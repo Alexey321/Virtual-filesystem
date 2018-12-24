@@ -6,7 +6,7 @@
 
 #include "SuperBlock.h"
 
-#define MAX_FILES_NUMBER 16
+#define MAX_FILES_NUMBER 200
 
 typedef struct
 {

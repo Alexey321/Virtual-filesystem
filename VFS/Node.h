@@ -1,6 +1,6 @@
 #pragma once
 
-#define FILENAME_LENGTH 16
+#define FILENAME_LENGTH 40
 
 typedef struct
 {

@@ -14,13 +14,13 @@ SuperBlock NewSuperBlockInstance(unsigned long size)
 {
 	SuperBlock superBlock;
 	superBlock.blocksNumber = (size - MAX_FILES_NUMBER * sizeof(Node) - sizeof(SuperBlock)) /
-		(sizeof(Block) + sizeof(int));
+		(sizeof(Block) + sizeof(char));
 	superBlock.freeBlocksNumber = superBlock.blocksNumber;
 	superBlock.freeNodesNumber = MAX_FILES_NUMBER;
 
 	superBlock.nodesOffset = sizeof(SuperBlock);
 	superBlock.bitVectorOffset = superBlock.nodesOffset + MAX_FILES_NUMBER * sizeof(Node);
-	superBlock.blocksOffset = superBlock.bitVectorOffset + superBlock.blocksNumber * sizeof(int);
+	superBlock.blocksOffset = superBlock.bitVectorOffset + superBlock.blocksNumber * sizeof(char);
 
 	return superBlock;
 }
@@ -29,14 +29,14 @@ SuperBlock NewSuperBlockInstance(unsigned long size)
 int GetFirstFreeBlockIndex()
 {
 	unsigned long adress = disc.superBlock.bitVectorOffset;
-	int bit, i;
-	i = 0;
+	char bit;  //char bit, i = 0;
+	int i = 0; // if there is char, files would be corrupted
 
 	do
 	{
 		fseek(disc.file, adress, 0);
-		fread(&bit, sizeof(int), 1, disc.file);
-		adress += sizeof(int);
+		fread(&bit, sizeof(char), 1, disc.file);
+		adress += sizeof(char);
 		++i;
 	} while (bit == USED);
 
@@ -45,10 +45,10 @@ int GetFirstFreeBlockIndex()
 
 void SetBlockState(int index, int state)
 {
-	unsigned long adress = disc.superBlock.bitVectorOffset + (index * sizeof(int));
-	int bit = state;
+	unsigned long adress = disc.superBlock.bitVectorOffset + (index * sizeof(char));
+	char bit = state;
 	fseek(disc.file, adress, 0);
-	fwrite(&bit, sizeof(int), 1, disc.file);
+	fwrite(&bit, sizeof(char), 1, disc.file);
 }
 
 int GetFirstFreeNodeIndex()

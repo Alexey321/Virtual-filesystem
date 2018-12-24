@@ -3,7 +3,7 @@
 
 #define DISCNAME_LENGTH 16
 
-#define EMPTY 0
+//#define EMPTY 0
 #define UNUSED -1
 #define USED 1
 

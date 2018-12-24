@@ -40,10 +40,10 @@ int CreateDiscFile(char* filename)
 		fwrite(&node, sizeof(Node), 1, disc.file);
 	}
 
-	for (int i = 0; i < disc.superBlock.blocksNumber; ++i)
+	for (unsigned int i = 0; i < disc.superBlock.blocksNumber; ++i)
 	{
-		int j = UNUSED;
-		fwrite(&j, sizeof(int), 1, disc.file);
+		char j = UNUSED;
+		fwrite(&j, sizeof(char), 1, disc.file);
 	}
 	return 1;
 }
@@ -90,6 +90,7 @@ unsigned long GetFileSizeOnDisc(char* filename)
 
 		adress += sizeof(Node);
 	}
+	return 0; // should never happen
 }
 
 int isFileExistsOnDisc(char* filename)
@@ -120,6 +121,7 @@ long GetFirstBlockIndexOfFile(char* filename)
 
 		adress += sizeof(Node);
 	}
+	return 0; // should never happen
 }
 
 void CopyToDisc(char* filename)
@@ -293,17 +295,17 @@ void PrintDiscMap()
 		adress += sizeof(Node);
 	}
 
-	printf("[%lu]\t%s\t%lu\t%d\n", adress, "BitVector", disc.superBlock.blocksNumber * sizeof(int), 1);
+	printf("[%lu]\t%s\t%lu\t%d\n", adress, "BitVector", disc.superBlock.blocksNumber * sizeof(char), 1);
 
 	adress = disc.superBlock.bitVectorOffset;
-	for (int i = 0; i < disc.superBlock.blocksNumber; ++i)
+	for (unsigned int i = 0; i < disc.superBlock.blocksNumber; ++i)
 	{
-		int used;
+		char used;
 		fseek(disc.file, adress, 0);
-		fread(&used, sizeof(int), 1, disc.file);
+		fread(&used, sizeof(char), 1, disc.file);
 		if (used == UNUSED) used = 0;
 		printf("[%lu]\t%s\t\t%lu\t%d\n", disc.superBlock.blocksOffset + (i * sizeof(Block)), "Block", sizeof(Block), used);
-		adress += sizeof(int);
+		adress += sizeof(char);
 	}
 }
 
