@@ -27,7 +27,7 @@ Direct examples of single-file virtual file systems include emulators, such as P
   1) Implement driver to emulate real Filesystem
   2) Implement directories
 
-# PS: Don't you wonder what I saved in my file system ;)
+# PS: Don't you wonder what I saved in my file system ? ;)
 
 
 
