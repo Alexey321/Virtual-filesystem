@@ -1,0 +1,23 @@
+﻿  Building 'AvesomeFSDriver' with toolset 'WindowsKernelModeDriver10.0' and the 'Desktop' target platform.
+  Stamping Debug\AvesomeFSDriver.inf
+  Stamping [Version] section with DriverVer=12/25/2018,17.49.14.268
+C:\Users\root\source\repos\AvesomeFSDriver\AvesomeFSDriver\AvesomeFSDriver.inf(73-73): warning 1205: Section [MiniFilter.DriverFiles] referenced from DelFiles and CopyFiles directive.
+  AvesomeFSDriver.c
+  AvesomeFSDriver.vcxproj -> C:\Users\root\source\repos\AvesomeFSDriver\Debug\AvesomeFSDriver.sys
+  Done Adding Additional Store
+  Successfully signed: C:\Users\root\source\repos\AvesomeFSDriver\Debug\AvesomeFSDriver.sys
+  
+  ........................
+  Signability test complete.
+  
+  Errors:
+  None
+  
+  Warnings:
+  None
+  
+  Catalog generation complete.
+  C:\Users\root\source\repos\AvesomeFSDriver\Debug\AvesomeFSDriver\avesomefsdriver.cat
+  Done Adding Additional Store
+  Successfully signed: C:\Users\root\source\repos\AvesomeFSDriver\Debug\AvesomeFSDriver\avesomefsdriver.cat
+  
